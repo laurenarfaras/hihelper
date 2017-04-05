@@ -1,0 +1,8 @@
+.testing {
+  width: 71.42857%; }
+
+body {
+  background-color: lightblue; }
+  body h2 {
+    display: flex;
+    justify-content: center; }

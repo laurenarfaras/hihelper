@@ -1,0 +1,13 @@
+.testing {
+  width: percentage(5/7);
+}
+
+body {
+  background-color: lightblue;
+
+  h2 {
+    display: flex;
+    justify-content: center;
+  }
+
+}
