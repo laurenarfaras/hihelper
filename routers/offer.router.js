@@ -9,19 +9,33 @@ const auth = expressJWT({
   userProperty: 'payload'
 });
 
+// server.get("/weather/:lat,:lon", function(request, response) {
+//   var url = `https://api.darksky.net/forecast/${darkskyAPIKey}/${request.params.lat},${request.params.lon}`;
+//   axios.get(url)
+//       .then(function(res){ // success
+//         return res.data;
+//       })
+//       .then(function(data){
+//         response.send(data);
+//       })
+//       .catch(function(error){ // failure
+//         console.log(error);
+//       });
+// });
+
 router.get("/offers", function(req, res){
-  Offer.find({}, function(err, offers){
-    if(err){
-      res.status(500).json({
-        msg: err
+  axios.get("/offers")
+      .then(function(response){
+        return response.data;
+      })
+      .then(function(data){
+        response.send(data);
+      })
+      .catch(function(error){
+        console.log(error);
       });
-    } else {
-      res.status(200).json({
-        offers: offers
-      });
-    }
-  });
 });
+
 router.post('/offers', function(req, res){
   var offer = new Offer(req.body);
   offer.save(function(err, offer){
