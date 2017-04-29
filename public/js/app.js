@@ -18,8 +18,8 @@ var app = new Vue ({
       var url = "/offers";
       axios.get(url)
           .then(function(response){
-            console.log(response);
-          })
+            this.offers = response.data.offers;
+          }.bind(this))
           .catch(function(err){
             console.log(err);
           });

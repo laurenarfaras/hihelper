@@ -1,39 +1,27 @@
 const express = require('express');
 const router = express.Router();
+const axios = require('axios');
 const Offer = require('../models/offer.model.js');
 const _ = require('lodash');
 const signature = process.env.SIGNATURE || require('../secrets.js').SIGNATURE;
-const expressJWT = require('express-jwt');
-const auth = expressJWT({
-  secret: signature,
-  userProperty: 'payload'
-});
-
-// server.get("/weather/:lat,:lon", function(request, response) {
-//   var url = `https://api.darksky.net/forecast/${darkskyAPIKey}/${request.params.lat},${request.params.lon}`;
-//   axios.get(url)
-//       .then(function(res){ // success
-//         return res.data;
-//       })
-//       .then(function(data){
-//         response.send(data);
-//       })
-//       .catch(function(error){ // failure
-//         console.log(error);
-//       });
+// const expressJWT = require('express-jwt');
+// const auth = expressJWT({
+//   secret: signature,
+//   userProperty: 'payload'
 // });
 
-router.get("/offers", function(req, res){
-  axios.get("/offers")
-      .then(function(response){
-        return response.data;
-      })
-      .then(function(data){
-        response.send(data);
-      })
-      .catch(function(error){
-        console.log(error);
+router.get('/offers', function(req, res){
+  Offer.find({}, function(err, offers){
+    if(err){
+      res.status(500).json({
+        msg: err
       });
+    } else {
+      res.status(200).json({
+        offers: offers
+      });
+    }
+  });
 });
 
 router.post('/offers', function(req, res){
@@ -51,6 +39,19 @@ router.post('/offers', function(req, res){
   });
 });
 
+router.get('/offers/:id',  function(req, res){
+  Offer.find({_id: req.params.id}, function(err, offers){
+    if(err){
+      res.status(500).json({
+        msg: err
+      });
+    } else {
+      res.status(200).json({
+        offers: offers
+      });
+    }
+  });
+});
 
 
 module.exports = router;

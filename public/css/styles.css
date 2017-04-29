@@ -2,7 +2,36 @@
   width: 71.42857%; }
 
 body {
-  background-color: lightblue; }
+  background-color: lightblue;
+  margin: 2em; }
   body h2 {
     display: flex;
     justify-content: center; }
+
+    .demo-card-square.mdl-card {
+      width: 320px;
+      height: 320px;
+      margin: 0.5em;
+    }
+    .demo-card-square > .mdl-card__title {
+      color: #fff;
+      background:
+        url('../images/dog.png') bottom right 15% no-repeat #46B6AC;
+    }
+    /* card meta */
+    .card__meta {
+        margin-top: 0.5em;
+        /*font-size: 1.5rem;*/
+        color: #bbb;
+        margin-left: 0.8rem;
+        margin-right: 0.8rem;
+    }
+    .card__meta time{
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .col-xs-10, .col-sm-5, .col-md-3, .col-lg-3 {
+      padding-left: 0% !important;
+      padding-right: 0% !important;
+    }

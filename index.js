@@ -2,7 +2,7 @@ const express = require("express");
 const server = express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-
+var axios = require("axios");
 var offerRouter = require("./routers/offer.router.js");
 
 const port = process.env.PORT || 8080;
